@@ -1,5 +1,6 @@
 # Russian-Chinese-Vocabulary
-网上找到的《大学俄语》单词集，是个杂乱的 doc 文件，将其转换成 txt 再解析成 json
+[网上](http://edu.xju.edu.cn/meol/common/script/preview/download_preview.jsp?fileid=78743&resid=24782&lid=3563)
+找到的《大学俄语》单词集，是个杂乱的 doc 文件 (`大学俄语单词.doc`)，将其转换成 txt 再解析成 json
 
 解析出的单词已经在 `vocab.json` 文件里了，该文件可由运行 `generate.py` 生成。
 
