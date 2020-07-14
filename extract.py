@@ -26,8 +26,8 @@ class RuEntry:
     def __eq__(self, other) -> bool:
         return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
 
-    def to_dict(self) -> str:
-        return self.__dict__
+    def as_dict(self) -> dict:
+        return self.__dict__.copy()
 
 
 class ZhEntry:
@@ -43,8 +43,8 @@ class ZhEntry:
     def __repr__(self) -> str:
         return str(self)
 
-    def to_dict(self) -> str:
-        return self.__dict__
+    def as_dict(self) -> dict:
+        return self.__dict__.copy()
 
 
 class Entry:
@@ -59,14 +59,12 @@ class Entry:
     def __str__(self) -> str:
         return f'Entry(\n\t{self.ru},\n\t{self.zh}, \n\tchap={self.chap}\n)'
 
-    def toJSON(self) -> str:
-        data = {
-            'ru_entries': [*map(RuEntry.to_dict, self.ru)],
-            'zh_entries': [*map(ZhEntry.to_dict, self.zh)],
+    def as_dict(self) -> dict:
+        return {
+            'ru_entries': [*map(RuEntry.as_dict, self.ru)],
+            'zh_entries': [*map(ZhEntry.as_dict, self.zh)],
             'chapter': self.chap
         }
-
-        return json.dumps(data, ensure_ascii=False, indent=4)
 
 
 def normalized(contents: str) -> Iterator:
