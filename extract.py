@@ -2,7 +2,6 @@
 # 2020年07月12日 星期日 19时55分44秒
 
 import re
-import json
 import unicodedata
 from typing import Iterator, List, Tuple, Union
 
@@ -48,22 +47,25 @@ class ZhEntry:
 
 
 class Entry:
-    def __init__(self, ru: List[RuEntry], zh: List[ZhEntry], chap: int):
+    def __init__(self, ru: List[RuEntry], zh: List[ZhEntry], chapter: int):
         self.ru = list(ru)
         self.zh = list(zh)
-        self.chap = chap
+        self.chapter = chapter
 
     def __eq__(self, other) -> bool:
         return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
 
     def __str__(self) -> str:
-        return f'Entry(\n\t{self.ru},\n\t{self.zh}, \n\tchap={self.chap}\n)'
+        return f'Entry(\n\t{self.ru},\n\t{self.zh}, \n\tchapter={self.chapter}\n)'
+
+    def __repr__(self) -> str:
+        return str(self)
 
     def as_dict(self) -> dict:
         return {
             'ru_entries': [*map(RuEntry.as_dict, self.ru)],
             'zh_entries': [*map(ZhEntry.as_dict, self.zh)],
-            'chapter': self.chap
+            'chapter': self.chapter
         }
 
 
